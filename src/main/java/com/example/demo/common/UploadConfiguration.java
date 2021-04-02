@@ -18,8 +18,8 @@ public class UploadConfiguration {
     @ConfigurationProperties(prefix="up")
     public UploadProperties uploadProperties() {return new UploadProperties();}
 
-    @Bean
-    public UpYun upYun(UploadProperties uploadProperties) {
-        return new UpYun(uploadProperties.getUpYunBucketName(), uploadProperties.getUpYunUserName(), uploadProperties.getUpYunPassword());
-    }
+//    @Bean
+//    public UpYun upYun(UploadProperties uploadProperties) {
+//        return new UpYun(uploadProperties.getUpYunBucketName(), uploadProperties.getUpYunUserName(), uploadProperties.getUpYunPassword());
+//    }
 }

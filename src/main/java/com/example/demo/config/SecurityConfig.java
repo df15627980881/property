@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
 /**
  * @Description:
@@ -63,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests();
         registry.antMatchers(HttpMethod.OPTIONS)
                 .permitAll();
+        registry.and().headers().frameOptions().sameOrigin();
 //        registry.and()
 //                .exceptionHandling().accessDeniedPage("/unauth.html");
 //        registry.and()
@@ -73,7 +75,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .permitAll();
         registry.and()
                 .authorizeRequests()
-                .antMatchers("/","/user/login","/login", "/swagger-ui.html")
+                .antMatchers("/","/user/login","/login","/v2/api-docs", "/swagger-resources/configuration/ui",
+                        "/swagger-resources", "/swagger-resources/configuration/security",
+                        "/swagger-ui.html", "/webjars/**")
                 .permitAll()
                 .antMatchers("/addGood")
                 .hasAuthority("admin")
